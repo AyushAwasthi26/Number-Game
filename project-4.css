@@ -1,0 +1,262 @@
+:root {
+  /* --- Gold/Silver Color Palette (Adjusted for subtle golden tint) --- */
+  --background-start: #1c1c1c; /* Deep Charcoal */
+  --background-end: #0f0f0f;   /* Almost Black */
+  --card-bg: #2b2b2b;          /* Dark Grey Card Base */
+  --border-color: #555555;      /* Medium Grey Border */
+  --text-color: #ffffff;       /* Bright White Text */
+  --secondary-text: #cccccc;   /* Light Grey for helper text */
+  --primary-highlight: #ffcc00; /* Bright Gold */
+  --accent-glow: #ffd700;       /* Lighter Gold/Yellow Glow */
+  --button-glow: #ffe773;       /* Softest Gold Glow for shadow */
+  --shadow-color: rgba(0, 0, 0, 0.6); /* Deeper Shadow */
+  --container-border-color: #8c8c8c; /* Silver-grey container border */
+  --result-bg: #353535;          /* Slightly lighter background for results */
+  
+  /* NEW: Subtle Golden Tint for Glass Effect */
+  --glass-tint: rgba(255, 223, 0, 0.1); 
+  /* NEW: Hover/Focus Scale */
+  --scale-factor: 1.01; 
+}
+
+/* Base and Background */
+body {
+  font-family: "Inter", sans-serif;
+  background-image: url("./pj4.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  color: var(--text-color); /* Use white for general text */
+}
+
+.container {
+  /* Glass-morphism Base */
+  background: rgba(43, 43, 43, 0.2); /* Semi-transparent dark base */
+  backdrop-filter: blur(10px) saturate(150%); /* The core glass effect */
+  -webkit-backdrop-filter: blur(10px) saturate(150%); /* For Safari */
+  
+  /* Border & Shadow */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Translucent white border */
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px var(--shadow-color);
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  overflow: hidden;
+  
+  /* Original Golden/Dark Gradient is replaced by glass effect. */
+  /* Adding the subtle golden tint */
+  background-image: linear-gradient(
+      135deg, 
+      var(--glass-tint), 
+      rgba(43, 43, 43, 0.1) /* Darker transparent point */
+  );
+  
+  /* Transitions for Smooth Scaling and Glow */
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+}
+
+/* Hover and Focus Effect: Scale up and enhance glow */
+.container:hover,
+.container:focus-within { /* Focus-within works when an input inside is focused */
+    transform: scale(var(--scale-factor)); /* Scales up slightly */
+    /* Add a golden glow to the box shadow on hover */
+    box-shadow: 0 15px 45px rgba(255, 215, 0, 0.5), 
+                0 0 20px rgba(255, 215, 0, 0.3); 
+    /* Make the golden tint slightly more visible */
+    background-image: linear-gradient(
+        135deg, 
+        rgba(255, 223, 0, 0.15), /* Slightly less transparent gold */
+        rgba(43, 43, 43, 0.15)
+    );
+}
+
+h1,
+h2 {
+  font-weight: 700;
+  color: var(--text-color);
+  margin: 0 0 1rem 0;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+p {
+  margin: 0.5rem 0;
+  color: var(--secondary-text);
+}
+
+.main-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-highlight);
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* Input Field Styling (Shiny Metal Look) */
+#guessField {
+  width: 80%;
+  max-width: 250px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  background-color: transparent;
+  border: 2px solid var(--primary-highlight);
+  border-radius: 10px;
+  color: var(--text-color);
+  font-size: 1.25rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.4)
+  );
+  -webkit-text-fill-color: var(--text-color);
+  opacity: 1;
+}
+
+#guessField::placeholder {
+    color: var(--secondary-text);
+    opacity: 0.7;
+}
+#guessField::-webkit-input-placeholder {
+    color: var(--secondary-text);
+    opacity: 0.7;
+}
+#guessField::-moz-placeholder {
+    color: var(--secondary-text);
+    opacity: 0.7;
+}
+#guessField:-ms-input-placeholder {
+    color: var(--secondary-text);
+    opacity: 0.7;
+}
+
+#guessField:focus {
+  outline: none;
+  box-shadow: 0 0 18px var(--button-glow);
+}
+
+/* --- Increment/Decrement Buttons Styling (Webkit only) --- */
+/* Hide default arrows for Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  width: 20px;
+  height: 100%;
+  background: var(--primary-highlight);
+  color: #1c1c1c;
+  cursor: pointer;
+  border-left: 2px solid var(--primary-highlight);
+  opacity: 0.9;
+  transition: all 0.2s ease;
+}
+
+input[type="number"]::-webkit-inner-spin-button:hover,
+input[type="number"]::-webkit-outer-spin-button:hover {
+  background: var(--accent-glow);
+  opacity: 1;
+}
+
+/* Submit Button (Gold Gradient) */
+.submit-btn {
+  background: linear-gradient(180deg, var(--primary-highlight), #cc9900);
+  color: #1c1c1c;
+  padding: 0.8rem 3rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
+  letter-spacing: 0.5px;
+}
+
+.submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(255, 215, 0, 0.7);
+}
+
+/* Result Area (Silver/Grey Section) */
+.resultParas {
+  margin-top: 2.5rem;
+  background: var(--result-bg);
+  border: 1px solid var(--container-border-color);
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.1);
+}
+
+/* Message Text (Low/High/Correct) */
+.lowOrHi h2 {
+  color: var(--primary-highlight);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-shadow: 0 0 6px var(--accent-glow);
+}
+
+/* Previous Guesses / Remaining */
+.guesses,
+.lastResult {
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  text-align: left;
+  padding-left: 1rem;
+  color: var(--secondary-text);
+}
+
+.resultParas p {
+  margin: 0.5rem 0;
+}
+
+.resultParas .button {
+  margin-top: 2.5rem;
+}
+
+/* New Game Button (Silver/Grey) */
+#newGame {
+  background: var(--container-border-color);
+  color: #1c1c1c;
+  padding: 0.75rem 2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+#newGame:hover {
+  background: #a9a9a9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px var(--shadow-color);
+}
+
+/* Disabled Input */
+#guessField:disabled {
+  background-color: #444444;
+  cursor: not-allowed;
+  opacity: 0.7;
+  box-shadow: none;
+}

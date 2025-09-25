@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="project-4.css">
+    <script defer src="project-4.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Number Guessing Game</h1>
+        <p class="intro-text">Try and guess a random number between 1 and 100.</p>
+        <p class="intro-text">You have 10 attempts to guess the right number.</p>
+
+        <form class="game-form">
+            <h2 class="main-heading">Guess a number</h2>
+            <input type="number" id="guessField" class="guessField" min="1" max="100" placeholder="Enter your number">
+            <button type="submit" id="subt" class="submit-btn">Submit guess</button>
+        </form>
+
+        <div class="resultParas">
+            <p class="lowOrHi"></p>
+            <p>Previous Guesses: <span class="guesses"></span></p>
+            <p>Guesses Remaining: <span class="lastResult">10</span></p>
+            
+            </div>
+    </div>
+</body>
+</html>
